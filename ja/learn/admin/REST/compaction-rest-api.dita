@@ -1,47 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="reference_rest_compaction">
+<reference xml:lang="ja" id="reference_rest_compaction">
 	<title>Compaction API</title>
-	<shortdesc>Compaction is used to reclaim disk space and reduce disk fragmentation.</shortdesc>
+	<shortdesc>Compaction はディスク領域を開放し、断片化したディスクを軽減させるために使用します。</shortdesc>
 	<refbody>
 		
-		<section><title>Description</title>
-		<p>Couchbase Server writes all data that you append, update and delete as files on disk. The
-				compaction process can eventually lead to gaps in the data file, particularly when
-				you delete data. Be aware the server also writes index files in a sequential format
-				based on appending new results in the index. You can reclaim the empty gaps in all
-				data files by performing a process called compaction. For both data files and index
-				files, perform frequent compaction of the files on disk to help reclaim disk space
-				and reduce disk fragmentation. </p>
+		<section>
+			<title>説明</title>
+			<p>
+				Couchbase Serverは追加、更新、削除した全てのデータをディスクのファイルと同じように書き込み処理を行います。
+				特にデータ削除時に行うと、compaction処理は最終的にデータファイルの欠落を起こすことがあります。
+				インデックスに新しい結果を追加すると逐次フォーマットベースでインデックスファイルに書き込みされることも注意してください。
+				compactionと呼ばれる処理を行うことによりすべてのファイルの空白を再利用することができます。
+				データファイルとインデックスファイル両方にとって、頻繁にファイルのcompactionを頻繁に行うことはディスク領域の開放やディスクの断片化の軽減の役に立ちます。
+			</p>
 			
 			<table>
-				<title>Compaction endpoints</title>
+				<title>Compaction エンドポイント</title>
 				<tgroup cols="3">
 					<colspec colname="col1" colwidth="1*"/>
 					<colspec colname="col2" colwidth="3.69*"/>
 					<colspec colname="col3" colwidth="2.73*"/>
 					<thead>
 						<row>
-							<entry>HTTP method</entry>
-							<entry>URI path</entry>
-							<entry>Description</entry>
+							<entry>HTTPメソッド</entry>
+							<entry>URIパス</entry>
+							<entry>説明</entry>
 						</row>
 					</thead>
 					<tbody>
 						<row>
 							<entry>POST </entry>
 							<entry>/pools/default/buckets/[bucket_name]/controller/compactBucket</entry>
-							<entry>Compacts bucket data and indexes.</entry>
+							<entry>bucketデータやインデックスを圧縮します。</entry>
 						</row>
 						<row>
 							<entry>POST</entry>
 							<entry>/pools/default/buckets/[bucket_name]/controller/cancelBucketCompaction</entry>
-							<entry>Cancels compaction for the specified bucket.</entry>
+							<entry>特定のbucketの圧縮をキャンセルします。</entry>
 						</row>
 						<row>
 							<entry>POST</entry>
 							<entry>/[bucket_name]/_design/[ddoc_name]/_spatial/_compact</entry>
-							<entry>Compacts a spatial view.</entry>
+							<entry>空間ビューを圧縮します。</entry>
 						</row>
 					</tbody>
 				</tgroup>

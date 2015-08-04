@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference xml:lang="en-us" id="rest-bucket-auth">
-  <title>Changing bucket authentication</title>
-  <shortdesc>To change bucket authentication use the <codeph>POST
-      /pools/default/buckets/acache</codeph> HTTP method and URI with the <codeph>authType</codeph>
-    parameter.</shortdesc>
+<reference xml:lang="ja" id="rest-bucket-auth">
+  <title>bucket認証の変更</title>
+  <shortdesc>bucket認証を変更を削除する時は、<codeph>POST /pools/default/buckets/acache</codeph> HTTP メソッドとURIに<codeph>authType</codeph>パラメータを渡してを使用します。</shortdesc>
   <refbody>
 
-    <section><title>Description</title>
-      <p>Changing a bucket from port-based authentication to SASL authentication is achieved by
-        changing the active bucket configuration. </p>
-      <note type="important">When changing the active bucket configuration, specify the existing
-        configuration parameters and the changed authentication parameters.</note>
+    <section>
+      <title>説明</title>
+      <p>稼働中のbucketの設定を変更することでbucketをポートベースの認証からSASL認証に変更することが出来ます。</p>
+      <note type="important">稼働中のbucketの設定を変更するときは、既存の設定パラメータと変更した認証パラメータを指定してください。</note>
     </section>
     
-    <section><title>HTTP method and URI</title>
+    <section><title>HTTPメソッドとURI</title>
       <codeblock>POST /pools/default/buckets/acache</codeblock>
       
-      <p>Parameter:</p>
+      <p>パラメータ:</p>
       <ul>
-        <li>authType - Values type includes sasl or none. Default: none</li>
+        <li>authType - 値の種類は sasl か noneです。 デフォルト: none</li>
       </ul>
     </section>
     
     
-    <section><title>Syntax</title>
-      <p>Curl request syntax:</p>
+    <section><title>シンタックス</title>
+      <p>Curlリクエストシンタックス:</p>
       <codeblock>curl -X POST -u [admin]:[password] 
   -d authType=[none | sasl]
   -d saslPassword=[password]
@@ -34,8 +31,9 @@
     </section>
     
     
-    <section><title>Example</title>
-      <p>Curl request example:</p>
+    <section>
+      <title>例</title>
+      <p>Curlリクエスト例:</p>
       <codeblock>curl -X POST -u admin:password 
   -d authType=sasl
   -d saslPassword=letmein

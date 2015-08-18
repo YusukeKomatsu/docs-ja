@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="reference_gv3_fs4_hp">
-  <title>Creating client logs</title>
-  <shortdesc>Client logs refers to entries that are added to the central log from a SDK.</shortdesc>
+<reference xml:lang="ja" id="reference_gv3_fs4_hp">
+  <title>クライアントログの作成</title>
+  <shortdesc>クライアントログはSDKからセントラルログに追加されたエントリを参照します。</shortdesc>
   
   <refbody>
-    <section><title>Description</title>
-      <p>Entries can be added to the central log from a custom Couchbase SDK. These entries are
-        typically responses to exceptions such as difficulty handling a server response. For
-        example, the web console uses this functionality to log client error conditions. </p>
+    <section><title>説明</title>
+      <p>
+        エントリはカスタムCouchbase SDKからセントラルログに追加できます。
+        これらのエントリは一般的に、サーバレスポンスのハンドリングのような難しい例外のレスポンスです。
+        例えば、Webコンソールではクライアントのエラー状態を記録するときにこの機能を使用します。
+      </p>
     </section>
     
-    <section><title>HTTP method and URI</title>
+    <section><title>HTTPメソッドとURI</title>
       
       <codeblock>POST /logClientError</codeblock>
     </section>
     
-    <section><title>Syntax</title>
+    <section><title>シンタックス</title>
       
-      <p>To add entries, provide a REST request similar to the following:</p>
+      <p>エントリを追加するには、次のようなRESTリクエストを行います:</p>
       
       <codeblock>POST /logClientError
 Host: [localhost]:8091
@@ -28,12 +30,12 @@ X-memcachekv-Store-Client-Specification-Version: 0.1
 </codeblock>
     </section>
     
-    <section><title>Example</title>
-      <p>Curl request example:</p>
+    <section><title>例</title>
+      <p>Curlリクエスト例:</p>
       <codeblock>curl -u Administrator:password -X POST http://10.5.2.117:8091/logClientError</codeblock>
     </section>
     
-    <section><title>Response codes</title>
+    <section><title>レスポンスコード</title>
       <codeblock>200 - OK
 "Unexpected server error, request logged."
       </codeblock>

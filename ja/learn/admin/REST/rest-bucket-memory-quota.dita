@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference xml:lang="en-us" id="rest-bucket-memory-quota">
-  <title>Changing bucket memory quota</title>
-  <shortdesc>To increase or decrease bucket memory quota, use the <codeph>POST
-            /pools/default/buckets/newBucket</codeph> HTTP method and URI and the
-            <codeph>ramQuotaMB</codeph> option.</shortdesc>
+<reference xml:lang="ja" id="rest-bucket-memory-quota">
+  <title>bucketのメモリ割り当ての変更</title>
+  <shortdesc>
+    bucketのメモリ割り当てを増減するには、<codeph>POST /pools/default/buckets/newBucket</codeph> HTTPメソッドとURIと<codeph>ramQuotaMB</codeph>オプションを使用します。
+  </shortdesc>
 
   <refbody>
     
-    <section><title>Description</title>
-      <p>A bucket’s ramQuotaMB can be increased and decreased from its current level. However, while
-      increasing will do no harm, decreasing should be done with proper sizing. Decreasing the
-      bucket’s ramQuotaMB lowers the watermark, and some items may be unexpectedly ejected if the
-      ramQuotaMB is set too low.</p>
+    <section><title>説明</title>
+      <p>
+        bucketのramQuotaMBは現在のレベルから増減することが出来ます。
+        しかしながら、増加には害はないですが、減少は適切なサイズで行われるべきです。
+        bucketのramQuotaMBの減少はwatermarkよりも低くします。ramQuotaMBが小さすぎる場合、アイテムが予期せずに除外されます。
+      </p>
       
-      <note type="note"> There are some known issues with changing the ramQuotaMB for memcached bucket types.</note>
-      <note type="important">When changing the active bucket configuration, specify the existing
-        configuration parameters and the changed authentication parameters.</note>
+      <note type="note">
+        memcached bucketタイプでのramQuotaMBの変更にはいくつか既知の問題があります。
+      </note>
+      <note type="important">
+        有効なbucket構成を変更する場合、既存の構成パラメータと変更した認証パラメータを指定してください。
+      </note>
     </section>
     
     
-    <section><title>Syntax</title>
-      <p>Curl request syntax:</p>
+    <section><title>シンタックス</title>
+      <p>Curlリクエストシンタックス:</p>
       <codeblock>curl -X POST -u [admin]:[password] 
   -d ramQuotaMB=[value] -d authType=[none | sasl]
   -d proxyPort=[port] 
   http://[localhost]:8091/pools/default/buckets/[bucket-name]</codeblock>
     </section>
     
-    <section><title>Example</title>
-      <p>Curl request example:</p>
+    <section><title>例</title>
+      <p>Curlリクエスト例:</p>
       <codeblock>curl -X POST -u Administrator:password 
   -d ramQuotaMB=130 
   -d authType=none
@@ -38,9 +42,10 @@
      </section>
     
     
-    <section><title>Response</title>
-      <p>A 202 response indicates that the quota will be changed asynchronously throughout the
-        servers in the cluster.</p>
+    <section><title>レスポンス</title>
+      <p>
+        202レスポンスは割り当てがクラスタ内のサーバ全体で非同期で変更されることを表しています。
+      </p>
       <codeblock>HTTP/1.1 202 OK
 Server: Couchbase Server 1.6.0
 Pragma: no-cache
@@ -49,7 +54,7 @@ Content-Length: 0
 Cache-Control: no-cache no-store max-age=0
 </codeblock>
         
-        <p>If the ram quota is too low, an error and usage summary is returned:</p>
+        <p>もしRAM割り当てが少なすぎる場合、エラーと利用状況概要を返します:</p>
         <codeblock>{
     "errors": {
         "ramQuotaMB": "RAM quota cannot be less than 100 MB"
@@ -76,7 +81,7 @@ Cache-Control: no-cache no-store max-age=0
     </section>
     
     
-    <section><title>Response codes</title>
+    <section><title>レスポンスコード</title>
         <codeblock>202 OK</codeblock>
     </section>
 

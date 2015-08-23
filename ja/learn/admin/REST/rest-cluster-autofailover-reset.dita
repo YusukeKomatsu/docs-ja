@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference xml:lang="en-us" id="rest-cluster-autofailover-reset">
-  <title>Resetting auto-failover</title>
-  <shortdesc>Auto-failover is reset with the <codeph>POST /settings/autoFailover/resetCount</codeph> HTTP method and URI.</shortdesc>
+<reference xml:lang="ja" id="rest-cluster-autofailover-reset">
+  <title>オートフェイルオーバの再設定</title>
+  <shortdesc>オートフェイルオーバは<codeph>POST /settings/autoFailover/resetCount</codeph> HTTPメソッドとURIでリセットします。</shortdesc>
   <refbody>
-    <section><title>HTTP method and URI</title>
-      <p>Resets the number of nodes that Couchbase Server has automatically failed over. A request
-        can be sent to reset the auto-failover number to 0. This is a global setting for all
-        clusters. Authenticated is required to change this value. No parameters are required.</p>
+    <section><title>HTTPメソッドとURI</title>
+      <p>
+        Couchbase Serverが自動的にフェールオーバしたノード数をリセットします。
+        リクエストを送ることでオートフェイルオーバ数を0にリセット出来ます。
+        This is a global setting for all clusters.
+        これはcluster全体のグローバルな設定です。
+        認証されている場合はこの値を変更する必要があります。パラメータは必要ありません。
+      </p>
       
       <codeblock>
 POST /settings/autoFailover/resetCount
@@ -15,21 +19,21 @@ POST /settings/autoFailover/resetCount
     
     </section>
     
-    <section><title>Syntax</title>
+    <section><title>シンタックス</title>
     <codeblock>
 curl -X POST -i -u [admin]:[password] \
   http://localhost:8091/settings/autoFailover/resetCount
     </codeblock>
     </section>
     
-    <section><title>Example</title>
-      <p>Curl request example:</p>
+    <section><title>例</title>
+      <p>Curlリクエスト例:</p>
     
     <codeblock>curl -X POST -i -u admin:password \
     http://10.5.2.54:8091/settings/autoFailover/resetCount
 </codeblock>
       
-      <p>Raw HTTP request example:</p>
+      <p>Raw HTTPリクエスト例:</p>
     
     <codeblock>POST /settings/autoFailover/resetCount HTTP/1.1
 Host: localhost:8091
@@ -38,9 +42,9 @@ Authorization: Basic YWRtaW46YWRtaW4=
 </codeblock>
     </section>
       
-      <section><title>Response codes</title>
+      <section><title>レスポンスコード</title>
     <codeblock>HTTP/1.1 200 OK</codeblock>
-    <p>Possible errors include:</p>
+    <p>エラーを含む場合:</p>
     <codeblock>This endpoint isn't available yet.
 401 Unauthorized
 </codeblock>

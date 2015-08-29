@@ -1,69 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="reference-rest-servergroups">
-  <title>Server groups API</title>
+<reference xml:lang="ja" id="reference-rest-servergroups">
+  <title>サーバグループAPI</title>
 
-  <shortdesc>The server groups REST API refers to the Rack Zone Awareness feature, which enables logical groupings 
-    of servers on a cluster where each
-    server group physically belongs to a rack or availability zone. </shortdesc>
+  <shortdesc>
+    サーバグループREST APIはラックゾーン認知機能を参照します。この機能はラックやアベイラビリティーゾーンに物理的に属する各サーバグループのクラスタのサーバを論理的にグループ化出来ます。
+  </shortdesc>
 
   <refbody>
-    <section><title>Description</title>
-    <p>This feature provides the ability to specify that active and corresponding replica partitions
-      be created on servers that are part of a separate rack or zone. For purposes of the server
-      group REST API, racks or availability zones are represented as flat space of server groups
-      with group names. To enable Rack Awareness, all servers in a cluster must be upgraded to use
-      the Rack Awareness feature. </p>
+    <section><title>説明</title>
+    <p>
+      この機能は、別々のラックやゾーンの一部にあるサーバ上に作成されたレプリカパーティションをアクティブにし、対応する機能を提供します。
+      サーバグループREST APIのために、ラックやアベイラビリティゾーンは、グループ名とサーバーグループをフラットな空間として表現しています。
+      ラック認知機能を有効にするには、クラスタ内のすべてのサーバをラック認知機能を使えるようにアップグレードする必要があります。
+    </p>
 
-    <note type="note">The Rack Awareness feature with its server group capability is an Enterprise
-      Edition feature.</note>
-    <p>The Server groups REST API provides the following capability:</p>
+    <note type="note">
+      サーバグループ機能を含むラック認知機能はエンタープライズ版の機能です。
+    </note>
+    <p>The Server groups REST API は次のような機能を提供します:</p>
     <ul>
-      <li>Create server groups</li>
-      <li>Edit server groups</li>
-      <li>Delete server groups</li>
-      <li>Assign servers to server groups.</li>
+      <li>サーバグループを作成する</li>
+      <li>サーバグループを編集する</li>
+      <li>サーバグループを削除する</li>
+      <li>サーバにサーバグループを割当てる</li>
     </ul>
 
       
       <table>
-        <title>Server group endpoints</title>
+        <title>サーバグループのエンドポイント</title>
         <tgroup cols="3">
           <colspec colname="col1" colwidth="1*"/>
           <colspec colname="col2" colwidth="1.7*"/>
           <colspec colname="col3" colwidth="1.92*"/>
           <thead>
             <row>
-              <entry>HTTP method</entry>
-              <entry>URI path</entry>
-              <entry>Description</entry>
+              <entry>HTTPメソッド</entry>
+              <entry>URIパス</entry>
+              <entry>説明</entry>
             </row>
           </thead>
           <tbody>
             <row>
               <entry>GET</entry>
               <entry>/pools/default/serverGroups</entry>
-              <entry>Retrieves information about a server group.</entry>
+              <entry>サーバグループの情報を取得する</entry>
             </row>
             <row>
               <entry>POST</entry>
               <entry>/pools/default/serverGroups</entry>
-              <entry>Creates a server group with a specific name.</entry>
+              <entry>指定の名前でサーバグループを作成する</entry>
             </row>
             <row>
               <entry>PUT</entry>
               <entry>/pools/default/serverGroups/&lt;:uuid&gt;</entry>
-              <entry>Updates the server group information.</entry>
+              <entry>サーバグループ情報を更新する</entry>
             </row>
             <row>
               <entry>PUT</entry>
               <entry>/pools/default/serverGroups?rev=&lt;:number&gt;</entry>
-              <entry>Updates a server’s group memberships.</entry>
+              <entry>サーバのグループ割り当てを更新する</entry>
             </row>
             <row>
               <entry>DELETE</entry>
               <entry>/pools/default/serverGroups/&lt;:uuid&gt;</entry>
-              <entry>Deletes a specific server group.</entry>
+              <entry>指定のサーバグループを削除する</entry>
             </row>
           </tbody>
         </tgroup>

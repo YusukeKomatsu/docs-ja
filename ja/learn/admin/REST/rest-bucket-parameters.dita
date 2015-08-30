@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference xml:lang="en-us" id="rest-bucket-change">
-  <title>Changing bucket parameters</title>
-  <shortdesc>To modify bucket parameters, use the <codeph>POST
-      /pools/default/buckets/[bucket-name]</codeph> HTTP method and URI with the bucket name being
-    the REST API endpoint. </shortdesc>
+<reference xml:lang="ja" id="rest-bucket-change">
+  <title>bucketパラメータの変更</title>
+  <shortdesc>
+    bucketパラメータを変更するには、<codeph>POST /pools/default/buckets/[bucket-name]</codeph> HTTPメソッドとURIをREST APIエンドポイントとなるbucket名と一緒に使用します。
+  </shortdesc>
   <refbody>
-    <section><title>Description</title>
-    <p>You can modify existing bucket parameters by posting the updated parameters used to create
-      the bucket to the bucket’s URI. Do not omit a parameter in your request since this is
-      equivalent to not setting it in many cases. We recommend you do a request to get current
-      bucket settings, make modifications as needed and then make your POST request to the bucket
-      URI.</p>
+    <section><title>説明</title>
+    <p>
+      更新されたbucketを作成するために使用するパラメータをbucketURIにpostすることで既存のbucketパラメータを変更することが出来ます。
+      リクエストでパラメータを省略しないでください。これは多くの場合、パラメータを設定しないのと同じです。
+      現在のbucketの設定を取得し、必要に応じて修正を行うためにリクエストし、その上でbucketURIへPOSTリクエストすることを推奨します。
+    </p>
       
       <note type="note">
-        The bucket name cannot be changed via the REST API.</note>
+        bucket名はREST APIを使用して変更することが出来ません。
+      </note>
     
-    <note type="important">When changing the active bucket configuration, specify the existing
-      configuration parameters and the changed authentication parameters.</note>
+    <note type="important">
+      アクティブなbucket構成を変更する時は、既存の構成パラメータを指定し、認証パラメータを変更する必要があります。
+    </note>
     </section>
     
-    <section><title>Syntax</title>
-      <p>Curl request syntax:</p>
+    <section><title>シンタックス</title>
+      <p>Curlリクエストシンタックス:</p>
       <codeblock>curl -v -X POST -u [admin]:[password] 
   -d name=[customer] 
   -d flushEnabled=[0 | 1] 
@@ -33,9 +35,9 @@
       </codeblock>
     </section>
     
-    <section><title>Example</title>
-      <p>Curl request example:</p>
-      <p>To edit the bucket <codeph>customer</codeph> on server node <codeph>10.5.2.54</codeph>:</p>
+    <section><title>例</title>
+      <p>Curlリクエスト例:</p>
+      <p>サーバノード <codeph>10.5.2.54</codeph> 上のbucket <codeph>customer</codeph> を編集する:</p>
       <codeblock>curl -v -X POST -u admin:password 
   -d name=customer 
   -d flushEnabled=0 
@@ -47,12 +49,12 @@
       </codeblock>
     </section>
     
-    <section><title>Response</title>
-      <p>If the request is successful, HTTP response 200 is returned with an empty data content.</p>
+    <section><title>レスポンス</title>
+      <p>リクエストが成功した場合、HTTPレスポンス200と空のデータコンテンツが返ってきます。</p>
       <codeblock>202 OK</codeblock>
     </section>
     
-    <section><title>Response codes</title>
+    <section><title>レスポンスコード</title>
       
       <codeblock></codeblock>
       <table>
@@ -61,8 +63,8 @@
           <colspec colname="col2" colwidth="2.85*"/>
           <thead>
             <row>
-              <entry>Response codes</entry>
-              <entry>Description</entry>
+              <entry>レスポンスコード</entry>
+              <entry>説明</entry>
             </row>
           </thead>
           <tbody>

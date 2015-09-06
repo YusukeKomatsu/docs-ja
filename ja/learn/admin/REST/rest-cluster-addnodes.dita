@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference xml:lang="en-us" id="rest-cluster-add-nodes">
-  <title>Adding nodes to clusters</title>
-  <shortdesc>Nodes are added to clusters with the <codeph>POST /controller/addNode</codeph> HTTP method and URI.</shortdesc>
+<reference xml:lang="ja" id="rest-cluster-add-nodes">
+  <title>クラスターへのノードの追加</title>
+  <shortdesc><codeph>POST /controller/addNode</codeph> HTTPメソッドとURIを使用してクラスターにノードを追加します。</shortdesc>
   <refbody>
     
-    <section><title>HTTP method and URI</title>
+    <section><title>HTTPメソッドとURI</title>
       <codeblock>
 POST /controller/addNode
       </codeblock>
     </section>
     
-    <section><title>Syntax</title>
-    <p>This is a REST request made to a Couchbase cluster to add a server node to the cluster. A new
-        node is add with the RESTful endpoint <codeph>server_ip:port/controller/addNode</codeph>.
-        The administrative username and password parameters are required.</p>
+    <section><title>シンタックス</title>
+    <p>
+      これはCouchbaseクラスタがサーバノードをクラスタに追加するためのRESTリクエストです。
+      新しいノードはRESTfulエンドポイント <codeph>server_ip:port/controller/addNode</codeph> を使用して追加されます。
+      管理権限のあるユーザ名とパスワードパラメータが必要です。
+    </p>
       
       <codeblock>
 curl -u [admin]:[password]
@@ -23,11 +25,12 @@ curl -u [admin]:[password]
       </codeblock>
     </section>
     
-    <section><title>Example</title>
-      <p>The following example request adds a server node, 10.2.2.64, to the cluster at
-        10.2.2.60:8091. The POST method, <codeph>controller/addNode</codeph>,  IP address for the
-        new server, and administrative credentials are provided. Since the POST method is the
-        default, it is not required in the request.</p>
+    <section><title>例</title>
+      <p>
+        次の例のリクエストではサーバノード、10.2.2.64を10.2.2.60:8091のクラスタに追加します。
+        POSTメソッド <codeph>controller/addNode</codeph>、 新しいサーバのIPアドレスと管理者権限の情報を指定します。
+        POSTメソッドはデフォルトなので、このリクエストは必須ではありません。
+      </p>
 
     <codeblock>curl -u admin:password \
   10.2.2.60:8091/controller/addNode \
@@ -35,10 +38,10 @@ curl -u [admin]:[password]
 </codeblock>
     </section>
     
-    <section><title>Response</title>
+    <section><title>レスポンス</title>
     
     
-    <p>If successful, Couchbase Server responds:</p>
+    <p>成功した場合のCouchbase Serverのレスポンス:</p>
     <codeblock>HTTP/1.1 200 OK
 {"otpNode":"ns_1@10.4.2.6"}
 </codeblock>

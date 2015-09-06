@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference xml:lang="en-us" id="rest-buckets-summary">
-    <title>Getting all bucket information</title>
-    <shortdesc>To retrieve all bucket information for a cluster use the <codeph>GET
-            /pools/default/buckets</codeph> HTTP method and URI.</shortdesc>
+<reference xml:lang="ja" id="rest-buckets-summary">
+    <title>全bucket情報取得</title>
+    <shortdesc>
+        クラスタの全てのbucket情報を取得するには<codeph>GET /pools/default/buckets</codeph>HTTPメソッドとURIを使用します。
+    </shortdesc>
     <refbody>
-        <section><title>Description</title>
-            <p>To create an SDK for Couchbase, use either the proxy path or the direct path to
-                connect to Couchbase Server. If the SDK uses the direct path, the SDK is not
-                insulated from most reconfiguration changes to the bucket. This means that the SDK
-                needs to either poll the bucket’s URI or connect to the streaming URI to receive
-                updates when the bucket configuration changes. Bucket configuration changes occur
-                under the follow circumstances: <ul>
-                    <li>Nodes are added.</li>
-                    <li>Nodes are removed.</li>
-                    <li>Nodes fail.</li>
-                </ul></p>
+        <section><title>説明</title>
+            <p>
+                CouchbaseのSDKを作成するには、Couchbase Serverに接続するためにプロキシパスかダイレクトパスのいずれかを使用します。
+                SDKでダイレクトパスを使用した場合、SDKはbucketの再構成の変化に最も密になります。
+                これはbucketの構成を変更した時にSDKがbucketのURIをポーリングするか更新を受信するためにストリーミングURIに接続することが必要であることを意味します。
+                bucket構成の変更は以下の状況で発生します:
+                <ul>
+                    <li>ノードが追加された。</li>
+                    <li>ノードが削除された。</li>
+                    <li>ノードが失敗した。</li>
+                </ul>
+            </p>
         </section>
         
-        <section><title>HTTP method and URI</title>
+        <section><title>HTTPメソッドとURI</title>
             <codeblock>
 GET /pools/default/buckets
             </codeblock>
             
         </section>
         
-        <section><title>Syntax</title>
-            <p>Curl request syntax to retrieve information for all buckets in a cluster:</p>
+        <section><title>シンタックス</title>
+            <p>クラスタから全bucketの情報を取得するCurlリクエストシンタックス:</p>
             <codeblock>curl -u [admin]:[password] 
     http://[localhost]:8091/pools/default/buckets</codeblock>
             
-            <p>Raw HTTP request syntax:</p>
+            <p>Raw HTTPリクエストシンタックス:</p>
             <codeblock>GET /pools/default/buckets
 Host: localhost:8091
 Authorization: Basic xxxxxxxxxxxxxxxxxxx
@@ -39,12 +41,12 @@ X-memcachekv-Store-Client-Specification-Version: 0.1
 </codeblock>
         </section>
         
-        <section><title>Example</title>
-            <p>Curl request example:</p>
+        <section><title>例</title>
+            <p>Curlリクエスト例:</p>
             <codeblock>curl -u admin:password 
     http://10.5.2.54:8091/pools/default/buckets</codeblock>
             
-            <p>Raw HTTP request example:</p>
+            <p>Raw HTTPリクエスト例:</p>
             <codeblock>GET /pools/default/buckets
 Host: 10.5.2.54:8091
 Authorization: Basic xxxxxxxxxxxxxxxxxxx
@@ -53,7 +55,7 @@ X-memcachekv-Store-Client-Specification-Version: 0.1
 </codeblock>
         </section>
         
-        <section><title>Response</title>       
+        <section><title>レスポンス</title>
         <codeblock>
 Host: localhost:8091
 Authorization: Basic xxxxxxxxxxxxxxxxxxx

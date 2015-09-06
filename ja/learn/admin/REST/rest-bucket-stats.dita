@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference xml:lang="en-us" id="rest-bucket-stats">
-    <title>Getting bucket statistics</title>
-    <shortdesc>To retrieve bucket statistics, use the <codeph>GET</codeph> operation with the
-            <codeph>/pools/default/buckets/bucket_name/stats</codeph> URI.</shortdesc>
+<reference xml:lang="ja" id="rest-bucket-stats">
+    <title>bucket統計情報取得</title>
+    <shortdesc>
+      bucket統計情報を取得するには、<codeph>GET</codeph>オペレーションを<codeph>/pools/default/buckets/bucket_name/stats</codeph> URIと一緒に使用します。
+    </shortdesc>
     
     <refbody>
         
-        <section><title>HTTP method and URI</title>
+        <section><title>HTTPメソッドとURI</title>
         
-        <p>Statistics can be retrieved at the bucket level.
-            The request URL should be taken from stats.uri property of a bucket response. 
-            By default, this request returns stats for the last minute and for heavily used keys. 
-            Query parameters provide a more detailed level of information.</p>
+        <p>
+          統計情報はbucketレベルで取得できます。
+          リクエストURLはbucketレスポンスのstats.uriプロパティから取得する必要があります。
+          デフォルトでは、このリクエストは直前の頻繁に使用されるキーの統計情報を返します。
+          クエリパラメータで更に詳細なレベルの情報を指定します。
+        </p>
             
             <codeblock>GET /pools/default/buckets/[bucket-name]/stats</codeblock>
             
-            <p>Parameters:</p>
+            <p>パラメータ:</p>
         <dl>
             <dlentry>
                 <dt>zoom</dt>
-                <dd>Provides a statistical sampling for that bucket stats at a particular interval
-                        (minute | hour | day | week | month | year). For example, a zoom level of
-                        minute provides bucket statistics from the past minute, a zoom level of day
-                        provides bucket statistics for the past day, and so on. If no zoom level is
-                        provided, the server returns statistics from the past minute.</dd>
-                </dlentry>
+                <dd>
+                  特定の間隔(分 | 時 | 日 | 週 | 月 | 年)でbucket統計のための統計的サンプリングを提供します。
+                  例えば、ズームレベルが分の場合bucket統計情報を過去数分から提供します。ズームレベルが日の場合bucket統計情報を過去数日から提供します。他も同様です。
+                  ズームレベルが指定されていない場合、サーバは過去数分の統計情報を返します。
+                </dd>
+            </dlentry>
             <dlentry>
                 <dt>haveTStamp</dt>
-                <dd>Requests statistics from this timestamp until now. 
-                    The timestamp is specified as UNIX epoch time. 
-                    To get a timestamp for a timeframe, 
-                    make a REST request to the endpoint with a zoom level.</dd>
+                <dd>
+                  指定されたタイムスタンプから現在までの統計情報をリクエストします。
+                  タイム散布はUNIXエポックタイムとして指定します。
+                  タイムフレームのタイムスタンプを取得するには、エンドポイントに対してズームレベルとともにRESTリクエストを行います。
+                </dd>
         </dlentry>
         </dl>
             
         </section>
         
-        <section><title>Syntax</title>
-            <p>Curl request syntax:</p>
+        <section><title>シンタックス</title>
+            <p>Curlリクエストシンタックス:</p>
             <codeblock>curl -u [admin]:[password] http://[localhost]:8091/pools/default/buckets/[bucket-name]/stats</codeblock>
             
-            <p>Raw HTTP request syntax:</p>
+            <p>Raw HTTP リクエストシンタックス:</p>
             <codeblock>
 GET /pools/default/buckets/[bucket-name]/stats
 Host: [localhost]:8091
@@ -49,9 +53,9 @@ Authorization: Basic xxxxxxxxxxxxxxxxxxx
 Accept: application/json X-memcachekv-Store-Client-Specification-Version: 0.1</codeblock>
         </section>
         
-        <section><title>Example</title>
+        <section><title>例</title>
             
-        <p>Curl request example with no parameters:</p>
+        <p>パラメータのないCurlリクエスト例:</p>
         
         <codeblock>
 curl -u Administrator:password http://10.5.2.54:8091/pools/default/buckets/test-bucket/stats
@@ -133,36 +137,38 @@ Content-Length: nnn
 </codeblock>
             </section>
             
-            <section><title>Example</title>
-        <p>The following are sample requests at this endpoint with optional parameters. </p>
-            <p>The following example retrieves sample statistics from a bucket for the last
-                minute.</p>          
+            <section><title>例</title>
+        <p>次のものは任意パラメータとともにエンドポイントに行うリクエストのサンプルです。</p>
+            <p>
+              次の例では直前のbucketからサンプル統計情報の取得を行います。
+            </p>
             <codeblock>          
 curl -X GET -u admin:password -d zoom=minute http://localhost:8091/pools/default/buckets/bucket-name/stats
         </codeblock>
             
-            <p>The following example retrieves sample statistics from a bucket for the past day.</p>                
+            <p>次の例では過去数日のbucketからサンプル統計情報の取得を行います。</p>
         <codeblock>
 curl -X GET -u admin:password -d zoom=day http://localhost:8091/pools/default/buckets/bucket-name/stats
 </codeblock>
 
-            <p>The following example retrieves sample statistics from a bucket for the last month.</p>
+            <p>次の例では先月のbucketからサンプル統計情報の取得を行います。</p>
         <codeblock>
 curl -X GET -u admin:password -d zoom=month http://localhost:8091/pools/default/buckets/bucket-name/stats
     </codeblock>
             
-            <p>The following example retrieves statistics from a bucket from the timestamp until the
-                server receives the REST request.</p>
+            <p>次の例ではタイムスタンプからサーバがRESTリクエストを受信するまでのサンプル統計情報をbucketから取得をします。</p>
         <codeblock>
 curl -X GET -u admin:password -d zoom=hour -d haveTStamp=1376963720000 http://localhost:8091/pools/default/buckets/bucket-name/stats
 </codeblock>
 
             </section>
             
-            <section><title>Response</title>
-                <p>Sample output for each of these requests appears in the same format and with the
-                same fields. Depending on the level of bucket activity, there may be more detail for
-                each field or less. In this sample output, results for each category are omitted. </p>
+            <section><title>レスポンス</title>
+                <p>
+                  これらそれぞれのリクエストのサンプル出力は同じ形式、同じフィールドで表示されます。
+                  bucketアクティビティのレベルに応じて、各フィールドがより詳細になったり、簡素になったりすることがあります。
+                  この出力例では、各カテゴリの結果は省略しています。
+                </p>
             
         <codeblock>{
   "hot_keys": [],

@@ -1,43 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference xml:lang="en-us" id="rest-cluster-autofailover">
-  <title>Managing auto-failover</title>
-  <shortdesc>Auto-failover is managed with with the <codeph>GET /settings/autoFailover</codeph> HTTP method and URI.</shortdesc>
+<reference xml:lang="ja" id="rest-cluster-autofailover">
+  <title>オートフェイルオーバの管理</title>
+  <shortdesc>オートフェイルオーバは<codeph>GET /settings/autoFailover</codeph>HTTPメソッドとURIを使用して管理します。</shortdesc>
   <refbody>
     
-    <section><title>Description</title>
-    <p>This section provides information about retrieving, enabling, disabling and resetting
-      auto-failover.</p>
+    <section><title>説明</title>
+    <p>このセクションはオートフェイルオーバの情報取得、有効化、無効化および再設定について記載されています。</p>
       
       <table>
-        <title>Auto-failover endpoints</title>
+        <title>オートフェイルオーバのエンドポイント</title>
         <tgroup cols="3">
           <colspec colname="col1" colwidth="1*"/>
           <colspec colname="col2" colwidth="1.36*"/>
           <colspec colname="col3" colwidth="2.81*"/>
           <thead>
             <row>
-              <entry>HTTP method</entry>
-              <entry>URI path</entry>
-              <entry>Description</entry>
+              <entry>HTTP メソッド</entry>
+              <entry>URI パス</entry>
+              <entry>説明</entry>
             </row>
           </thead>
           <tbody>
             <row>
               <entry>GET</entry>
               <entry>/settings/autoFailover</entry>
-              <entry>Retrieves automatic failover settings. Parameters include:
+              <entry>オートフェイルオーバの設定を取得します。パラメータは次のものを含みます:
                 <ul>
-                  <li>Enabled=[true |falue] : True to enable failover; false to disable failover.</li>
-                  <li>timeout=[value] : Integer between 30 and 3600. Specifies the amount of time (in seconds) that a node is down before failover in initiated.</li>
-                  <li>count=[0 | 1] : Number of times any node in a cluster can be automatically failed-over.</li>
+                  <li>Enabled=[true |falue] : Trueはフェイルオーバの有効化; falseはフェイルオーバの無効化.</li>
+                  <li>timeout=[value] : 30〜3600の間の整数。ノードが落ちてからフェイルオーバを開始するまでの時間（秒単位）を指定。</li>
+                  <li>count=[0 | 1] : クラスタがノードを自動的にフェイルオーバできる回数。</li>
                 </ul></entry>
             </row>
             <row>
               <entry>POST</entry>
               <entry>/settings/autoFailover</entry>
-              <entry>Enables and disables automatic failover. To enable or disable failover, use the <codeph>enabled=[true | false]</codeph> parameter. 
-                To specify the number of seconds that a node must be down before initiating failover, use the <codeph>timeout</codeph> parameter.</entry>
+              <entry>
+                オートフェイルオーバの有効化と無効化を行います。フェイルオーバの有効化・無効化を行うには、<codeph>enabled=[true | false]</codeph>パラメータを使用します。
+                フェイルオーバを開始するまでのノードが落ちている秒数を指定するには、<codeph>timeout</codeph>パラメータを使用します。
+              </entry>
             </row>
             <row>
               <entry>POST</entry>

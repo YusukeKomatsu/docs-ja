@@ -1,44 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference xml:lang="en-us" id="rest-cluster-autofailover-settings">
-  <title>Retrieving auto-failover settings</title>
-  <shortdesc>Auto-failover setting are retrieved with the <codeph>GET /settins/autoFailover</codeph> HTTP method and URI.</shortdesc>
+<reference xml:lang="ja" id="rest-cluster-autofailover-settings">
+  <title>オートフェイルオーバ設定の取得</title>
+  <shortdesc>オートフェイルオーバの設定は<codeph>GET /settins/autoFailover</codeph> HTTPメソッドとURIを使用して取得します。</shortdesc>
   <refbody>
     
-    <section><title>HTTP method and URI</title>
-      <p>Use this request to retrieve any auto-failover settings for a cluster. Auto-failover is a
-        global setting for all clusters. Authenticated is required to read this value.</p>
+    <section><title>HTTPメソッドとURI</title>
+      <p>
+        クラスタのオートフェイルオーバの設定はこのリクエストを使用して取得します。オートフェイルオーバは全てのクラスタのグローバル設定です。
+        この値を参照するには認証が必要です。
+      </p>
       <codeblock>GET /settings/autoFailover</codeblock>
       
-      <p>Parameters include:</p>
+      <p>パラメータは次のものを含みます:</p>
       <ul>
-        <li><codeph>enabled</codeph>: Value is true or false. True if auto-failover is enabled;
-          False if it is not.</li>
-        <li><codeph>timeout</codeph>: Seconds that must elapse before auto-failover executes on a
-          cluster.</li>
-        <li><codeph>count</codeph>: Value is 0 or 1. Number of times any node in a cluster can be
-          automatically failed-over. After one auto-failover occurs, the count is set to 1 and
-          Couchbase server does not perform auto-failover for the cluster again unless the count is
-          reset to 0. To failover more than one node at a time in a cluster, perform a manual
-          failover.</li>
+        <li><codeph>enabled</codeph>: 値は true か false です。Trueはオートフェイルオーバを有効にし、Falseは無効にします。</li>
+        <li><codeph>timeout</codeph>: オートフェイルオーバがクラスタで実行するまでに経過する秒数です。</li>
+        <li><codeph>count</codeph>: 値は 0 か 1です。クラスタのノードが自動的にフェイルオーバできる回数です。
+        オートフェイルオーバが1度発生した後、カウントが 1 に設定され、カウントが 0 にリセットされない限りCouchbaseサーバはクラスタのオートフェイルオーバを再び行うことはありません。
+        一度に複数のノードのフェイルオーバを行うには手動でフェイルオーバを実行します。</li>
       </ul>
 
     </section>
     
-    <section><title>Syntax</title>
-      <p>Curl request syntax:</p>
+    <section><title>シンタックス</title>
+      <p>Curlリクエストシンタックス:</p>
       <codeblock>curl -u [admin]:[password] http://[localhost]:8091/settings/autoFailover</codeblock>
 
     </section>
     
-    <section><title>Example</title>
-      <p>Curl request example</p>
+    <section><title>例</title>
+      <p>Curlリクエスト例</p>
       <codeblock>curl -u admin:password http://10.5.2.54:8091/settings/autoFailover
 </codeblock>
     </section>
     
-    <section><title>Response</title>
-    <p>If successful Couchbase Server returns any auto-failover settings for the cluster:</p>
+    <section><title>レスポンス</title>
+    <p>クラスタのオートフェイルオーバの設定が成功した場合、Couchbaseサーバは以下のように返します:</p>
     <codeblock>{
     "count": 0, 
     "enabled": false, 
@@ -48,8 +46,8 @@
     </section>
 
     
-    <section><title>Response codes</title>
-    <p>Possible errors include:</p>
+    <section><title>レスポンスコード</title>
+    <p>エラーを含む場合:</p>
     <codeblock>HTTP/1.1 401 Unauthorized
 This endpoint isn't available yet.
 </codeblock>

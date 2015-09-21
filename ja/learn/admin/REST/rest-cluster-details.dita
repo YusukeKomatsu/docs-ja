@@ -1,50 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference xml:lang="en-us" id="rest-cluster-get-details">
-    <title>Viewing cluster details</title>
-    <shortdesc>Cluster details are retrieved with <codeph>GET /pools/default</codeph> HTTP method and URI.</shortdesc>
+<reference xml:lang="ja" id="rest-cluster-get-details">
+    <title>クラスタの詳細閲覧</title>
+    <shortdesc>クラスタの詳細は<codeph>GET /pools/default</codeph> HTTPメソッドとURIを使用して取得します。</shortdesc>
     <refbody>
-        <section><title>Description</title>
-        <p>At the highest level, the response for this request describes a cluster, as mentioned
-            previously. The response contains a number of properties which define attributes of the
-            cluster and <i>controllers</i> which enable you to make certain requests of the
-            cluster.</p>
+        <section><title>説明</title>
+        <p>
+            前述のように、最も高いレベルでは、このリクエストのレスポンスはクラスタについて記述します。
+            レスポンスにはクラスタやクラスタの特定のリクエストを行うことができるようにするための<i>controllers</i>の属性を定義する多くのプロパティが含まれています。
+        </p>
         
-        <note type="warning">Since buckets could be renamed and there is no way to determine the name for the default
-            bucket for a cluster, the system attempts to connect non-SASL, non-proxied to a bucket
-            named "default". If it does not exist, Couchbase Server drops the connection. </note>
-        <p>Do not rely on the server list returned by this request to connect to a Couchbase Server.
-                Instead, issue an HTTP GET call to the bucket to get the node list for that specific
-                bucket.</p>
+        <note type="warning">
+            bucketの名前が変更された可能性があり、クラスタのデフォルトbucketの名前を判断する術がない場合、システムは非SASL、非プロキシで"default"という名前のbucketに接続しようとします。
+            もし存在しない場合、Couchbase Serverは接続を切断します。
+        </note>
+        <p>
+            Couchbase Serverの接続において、このリクエストで返ってくるサーバリストに依存しないでください。
+            代わりに、bucketにHTTP GETコールして特定のbucketのノードのリストを取得することで発行してください。
+        </p>
         </section>
         
-        <section><title>HTTP method and URI</title>
+        <section><title>HTTP メソッドとURI</title>
         <codeblock>GET /pools/default</codeblock>
             
-            <p>The controllers in the server list all accept parameters as
-                    <codeph>x-www-form-urlencoded</codeph>, and perform the following functions:</p>
+            <p>
+                サーバリストのコントローラは全て<codeph>x-www-form-urlencoded</codeph>をパラメータとして受け取り、次の関数を使用して実行します:
+            </p>
             <table>
-                <title>Controller parameters</title>
+                <title>コントローラのパラメータ</title>
                 <tgroup cols="2">
                     <colspec colname="col1" colwidth="1*"/>
                     <colspec colname="col2" colwidth="4.56*"/>
                     <thead>
                         <row>
-                            <entry>Function</entry>
-                            <entry>Description</entry>
+                            <entry>関数</entry>
+                            <entry>説明</entry>
                         </row>
                     </thead>
                     <tbody>
                         <row>
                             <entry>ejectNode</entry>
-                            <entry>Eject a node from the cluster. Required parameter: “otpNode”, the
-                                node to be ejected.</entry>
+                            <entry>
+                                クラスタからノードを外します。ノードを外すには “otpNode” パラメータが必要です。
+                            </entry>
                         </row>
                         <row>
                             <entry>addNode</entry>
-                            <entry>Add a node to this cluster. Required parameters: “hostname”,
-                                “user” and “password”. Username and password are for the
-                                Administrator for this node.</entry>
+                            <entry>
+                                クラスタにノードを追加します。“hostname”、“user”および“password”パラメータが必要です。
+                                ユーザ名とパスワードはノードの管理者のものです。
+                            </entry>
                         </row>
                         <row>
                             <entry>rebalance</entry>
@@ -56,34 +61,38 @@
                                 known nodes and the node to be ejected must be supplied. If the list
                                 does not match the set of nodes, the request will fail with an HTTP
                                 400 indicating a mismatch. Note rebalance progress is available via
-                                the rebalanceProgress uri.</entry>
+                                the rebalanceProgress uri.
+                            </entry>
                         </row>
                         <row>
                             <entry>failover</entry>
-                            <entry>Failover the vBuckets from a given node to the nodes which have
-                                replicas of data for those vBuckets. The “otpNode” parameter is
-                                required and specifies the node to be failed over.</entry>
+                            <entry>
+                                指定のノードからvBusketsのデータのレプリカを持つノードへvBusketsをフェールオーバします。
+                                “otpNode”パラメータが必須でフェイルオーバするノードを指定します。
+                            </entry>
                         </row>
                         <row>
                             <entry>reAddNode</entry>
-                            <entry>The “otpNode” parameter is required and specifies the node to be
-                                re-added.</entry>
+                            <entry>
+                                “otpNode”パラメータが必須で再追加するノードを指定します。
+                            </entry>
                         </row>
                         <row>
                             <entry>stopRebalance</entry>
-                            <entry>Stop any rebalance operation currently running. This takes no
-                                parameters. </entry>
+                            <entry>
+                                実行中のリバランスのオペレーションを停止します。パラメータは受け取りません。
+                            </entry>
                         </row>
                     </tbody>
                 </tgroup>
             </table>
         </section>
         
-        <section><title>Syntax</title>
-            <p>Curl request syntax:</p>
+        <section><title>シンタックス</title>
+            <p>Curlリクエストシンタックス:</p>
             <codeblock>curl -u [admin]:[password] http://[localhost]:8091/pools/default</codeblock>
             
-            <p>HTTP request syntax:</p>
+            <p>HTTPリクエストシンタックス:</p>
         <codeblock>GET /pools/default
 Host: localhost:8091
 Authorization: Basic xxxxxxxxxxxxxxxxxxx
@@ -92,14 +101,14 @@ X-memcachekv-Store-Client-Specification-Version: 0.1
 </codeblock>
         </section>
         
-        <section><title>Example</title>
-            <p>To send a request using curl:</p>
+        <section><title>例</title>
+            <p>curlを使用してリクエストを送信する場合:</p>
             <codeblock>
 curl -u Administrator:password http://10.5.2.117:8091/pools/default
             </codeblock>
         </section>
         
-        <section><title>Response</title>
+        <section><title>レスポンス</title>
         <codeblock>
 <![CDATA[
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current

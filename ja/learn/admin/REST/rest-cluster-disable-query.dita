@@ -1,47 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference xml:lang="en-us" id="rest-cluster-disable-query">
-  <title>Disabling consistent query results on rebalance</title>
-  <shortdesc>Ensuring query results consistency is performed with the <codeph>POST /internalSettings -d indexAwareRebalanceDisabled</codeph> HTTP method, URI, and parameter.</shortdesc>
+<reference xml:lang="ja" id="rest-cluster-disable-query">
+  <title>リバランスでの一貫したクエリ結果の無効化</title>
+  <shortdesc>
+    クエリ結果の一貫性の保証は<codeph>POST /internalSettings -d indexAwareRebalanceDisabled</codeph>HTTPメソッド、URIおよびパラメータを用いて行われます。
+  </shortdesc>
   <refbody>
     
     <section>
-      <title>Description</title>
-      <p>If queries are performed during rebalance, this setting ensures that query results are
-        consistent with the original bucket and data organization prior to rebalancing. In other
-        words, the query results reflect the data on an original node prior to rebalance rather than
-        data on a node after rebalance started. By default, this functionality is enabled.</p>
-      <note type="note">Be aware that rebalance may take significantly more time if you implemented
-        views for indexing and querying. If rebalance time becomes a critical factor for your
-        application, this feature can be disabled, however, it is not recommend. Do not disable this
-        functionality for production applications without thorough testing. To do so may lead to
-        unpredictable query results during rebalance. </note>
+      <title>説明</title>
+      <p>
+        リバランス中にクエリを実行した場合、この設定はクエリ結果が元のbucketやデータ編成がリバランスする前と一致することを保証します。
+        言い換えると、クエリの結果はリバランスを開始した後のノードのデータではなく、リバランスを開始する前の元のバケットのデータが反映されます。デフォルトでこの機能は有効です。
+      </p>
+      <note type="note">
+        インデックスやクエリのためにビューを実装した場合、リバランスは大幅に時間がかかる可能性があることに注意してください。
+        リバランスの時間がアプリケーションにとって重要な要因となる場合、この機能を無効にする事ができます。しかしお勧めはしません。
+        綿密なテストを行わずに本番のアプリケーションでこの機能を無効にしないでください。
+        リバランス中に行った場合、予測不可能なクエリ結果になる可能性があります。
+      </note>
     </section>
     
-    <section><title>HTTP method and URI</title>
+    <section><title>HTTPメソッドとURI</title>
       <codeblock>POST /internalSettings -d indexAwareRebalanceDisabled</codeblock>
     
     
     </section>
 
     
-    <section><title>Syntax</title>
-      <p>Curl request syntax:</p>
+    <section><title>シンタックス</title>
+      <p>Curlリクエストシンタックス:</p>
       <codeblock>curl -v -u [admin]:[password] -X POST
   http://[localhost]:8091/internalSettings
   -d indexAwareRebalanceDisabled=[true | false]
       </codeblock>
     </section>
     
-    <section><title>Example</title>
-      <p>Curl request example to disable this feature:</p>
+    <section><title>例</title>
+      <p>この機能を無効にするCurlリクエスト例:</p>
       <codeblock>curl -v -u admin:password -X POST
   http://10.5.2.54:8091/internalSettings
   -d indexAwareRebalanceDisabled=true
       </codeblock>
     </section>
     
-    <section><title>Response</title>
+    <section><title>レスポンス</title>
       <codeblock>HTTP/1.1 200 OK
 Content-Type: application/json</codeblock>
     </section>

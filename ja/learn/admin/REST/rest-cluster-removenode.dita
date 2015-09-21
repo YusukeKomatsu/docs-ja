@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="rest-cluster-removenode">
-  <title>Removing nodes from clusters</title>
-  <shortdesc>Nodes are removed from clusters with the <codeph>POST /controller/ejectNode</codeph> HTTP method and URI.</shortdesc>
+<reference xml:lang="ja" id="rest-cluster-removenode">
+  <title>クラスタからノードの削除</title>
+  <shortdesc>クラスタからノードを削除するには、<codeph>POST /controller/ejectNode</codeph> HTTP メソッドとURIを使用します。</shortdesc>
   <refbody>
     
-    <section><title>HTTP method and URI</title>
-    <p>Server nodes are typically removed from a cluster when the node is temporarily or permanently
-        down.</p>
+    <section><title>HTTPメソッドとURI</title>
+    <p>ノードが一時的もしくは恒久的にダウンした場合、通常はサーバノードが削除されます。</p>
       
       <codeblock>
 POST /controller/ejectNode        
       </codeblock>
     </section>
     
-    <section><title>Syntax</title>
+    <section><title>シンタックス</title>
       
-      <p>HTTP request syntax:</p>
+      <p>HTTPリクエストシンタックス:</p>
       <codeblock>POST /controller/ejectNode
 Host: [localhost]:8091
 Authorization: Basic xxxxxxxxxxxx
@@ -26,15 +25,15 @@ Content-Type: application/x-www-form-urlencoded
 otpNode=[node@hostname]
 </codeblock>
       
-      <p>Curl request syntax:</p>
+      <p>Curlリクエストシンタックス:</p>
     <codeblock>curl -u admin:password -d otpNode=[node@hostname] \
   http://[localhost]:8091/controller/ejectNode
 </codeblock>
     </section>
     
     
-    <section><title>Example</title>
-      <p>HTTP request example:</p>
+    <section><title>例</title>
+      <p>HTTPリクエスト例:</p>
     <codeblock>POST /controller/ejectNode
 Host: 192.168.0.106:8091
 Authorization: Basic xxxxxxxxxxxx
@@ -44,13 +43,13 @@ Content-Type: application/x-www-form-urlencoded
 otpNode=ns_1@192.168.0.107
 </codeblock>
       
-      <p>Curl request example:</p>
+      <p>Curlリクエスト例:</p>
       <codeblock>curl -u admin:password -d otpNode=ns_1@192.168.0.107 \
   http://192.168.0.106:8091/controller/ejectNode
 </codeblock>
     </section>
     
-    <section><title>Response codes</title>
+    <section><title>レスポンスコード</title>
     <codeblock>200 OK - node ejected
 400 Error, the node to be ejected does not exist
 401 Unauthorized - Credentials were not supplied and are required
